@@ -21,7 +21,7 @@ class ContactFormController extends Controller
         ]);
 
         Mail::to('test@test.com')->send(new ContactFormMail($data));
-
+        session()->flash('notif', 'Suporte enviado com sucesso, em breve receberá uma resposta!');
         return redirect('/');
     }
 }

@@ -39,4 +39,8 @@ Route::get('/mybooks', 'BooksController@showMyBooks')->name('books.mybooks')->mi
 
 Route::get('/create', 'BooksController@create')->name('books.create')->middleware('auth');
 
+Route::get('user/edit', 'UserController@edit')->name('user.edit')->middleware('auth');
+
+Route::put('user/edit', 'UserController@editSubmit')->name('user.update')->middleware('auth');
+
 Auth::routes();

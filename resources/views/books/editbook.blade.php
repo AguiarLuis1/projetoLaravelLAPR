@@ -4,15 +4,7 @@
 
 @section('content')
 <h3 class="text-center">Editar livro</h3>
-@if ($errors->any()) <!-- mostra os erros -->
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-@endif
+@include('errors');
 <form action="{{route('books.update',$book->id)}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('css/app.css')}}"> {{-- <- your css --}}
-    <title>@yield('title','Laravel Employee Lab. Prog.')</title>
+
+    <title>@yield('title','Re-Lidos')</title>
 </head>
 
 <body>
@@ -50,7 +50,9 @@
                         <li class="nav-item right">
                             <a class="btn btn-outline-info" href="{{route('contact.create')}}">Contacte-nos</a>
                         </li>
-
+                        <li class="nav-item right">
+                            <a class="btn btn-outline-secundary" href="{{route('user.edit')}}">Editar perfil</a>
+                        </li>
                         <li class="nav-item right">
                                     <a class="btn btn-outline-danger" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -70,7 +72,20 @@
         </nav>
 
         <main class="container mt-4">
+            @if(session()->has('notif'))
 
+                    <div class="alert alert-success" align="center">
+                        <strong>Notificação: </strong>{{session()->get('notif')}}
+                    </div>
+
+            @endif
+            @if(session()->has('err'))
+
+                    <div class="alert alert-danger" align="center">
+                        <strong>Aviso: </strong>{{session()->get('err')}}
+                    </div>
+
+            @endif
             @yield('content')
 
         </main>

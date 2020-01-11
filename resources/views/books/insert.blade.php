@@ -4,15 +4,7 @@
 
 @section('content')
 <h3 class="text-center">Inserir novo livro</h3>
-@if ($errors->any()) <!-- mostra os erros -->
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-@endif
+@include('errors')
 <form action="{{route('books.store')}}" method="post" enctype="multipart/form-data"> <!--enctype para imagens-->
     @csrf
     <div class="form-group">

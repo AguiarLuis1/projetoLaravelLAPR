@@ -39,6 +39,7 @@ class BooksController extends Controller
         $book->update([
             'image' => $request->image->store('uploads', 'public'), //guarda a imagem internamente na pasta definida
         ]);
+        session()->flash('notif', 'O anúncio foi criado com sucesso!');
         return redirect('/');
     }
     public function view($id)
@@ -54,6 +55,7 @@ class BooksController extends Controller
     public function delete($id)
     {
         Books::findOrFail($id)->delete();
+        session()->flash('notif', 'O anúncio foi apagado com sucesso!');
         return redirect('/');
     }
 
@@ -63,6 +65,7 @@ class BooksController extends Controller
         if ($book->idCreator == Auth::id()) { //se o livro que pretende editar fôr dele
             return view('books.editbook', ['book' => $book]);
         } else {
+            session()->flash('err', 'Este anúncio não lhe pertence!');
             return redirect('/');
         }
     }
@@ -73,6 +76,7 @@ class BooksController extends Controller
         $this->validateData();
         Books::where('id', $id)
             ->update(['title' => $request->title, 'authorOfBook' => $request->authorOfBook, 'price' => $request->price, 'language' => $request->language, 'isbn' => $request->isbn]);
+        session()->flash('notif', 'O anúncio foi atualizada com sucesso!');
         return redirect('/');
     }
     //mostrar os livros do user com login
