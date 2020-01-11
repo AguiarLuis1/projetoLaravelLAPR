@@ -20,6 +20,10 @@
             <input type="float" name="price"  class="form-control">
         </div>
         <div class="form-group">
+            <label for="contact">Contacto telefónico:</label>
+            <input type="number" name="contact"  class="form-control">
+        </div>
+        <div class="form-group">
             <label for="language">Linguagem:</label>
             <input type="text" name="language"  class="form-control">
         </div>

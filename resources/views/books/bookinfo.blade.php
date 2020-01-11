@@ -1,6 +1,7 @@
 <strong>Título:</strong> {{$book->title}}</br>
 <strong>Autor(es):</strong>  {{$book->authorOfBook}}</br>
 <strong>Preço:</strong>  {{$book->price}}&euro;</br>
+<strong>Contacto telefónico:</strong> {{$book->contact}}</br>
 <strong>Vendedor:</strong> {{$book->creator}}</br>
 <strong>Linguagem:</strong> {{$book->language}}</br>
 <strong>ISBN:</strong> {{$book->isbn}}</br></br>

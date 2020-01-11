@@ -30,6 +30,7 @@ class BooksController extends Controller
         $book->title = $request->title;
         $book->authorOfBook = $request->authorOfBook;
         $book->price = $request->price;
+        $book->contact = $request->contact;
         $book->creator = Auth::user()->name;
         $book->idCreator = Auth::id();
         $book->language = $request->language;
@@ -75,7 +76,7 @@ class BooksController extends Controller
     {
         $this->validateData();
         Books::where('id', $id)
-            ->update(['title' => $request->title, 'authorOfBook' => $request->authorOfBook, 'price' => $request->price, 'language' => $request->language, 'isbn' => $request->isbn]);
+            ->update(['title' => $request->title, 'authorOfBook' => $request->authorOfBook, 'price' => $request->price, 'contact' => $request->contact, 'language' => $request->language, 'isbn' => $request->isbn]);
         session()->flash('notif', 'O anúncio foi atualizada com sucesso!');
         return redirect('/');
     }
@@ -93,6 +94,7 @@ class BooksController extends Controller
             'title' => 'required',
             'authorOfBook' => 'required',
             'price' => 'required',
+            'contact' => 'required',
             'language' => 'required',
             'isbn' => 'required',
             'image' => 'file|image|max:5000', //5 mb tamanho max

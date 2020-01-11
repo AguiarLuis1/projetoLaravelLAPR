@@ -4,7 +4,7 @@
 
 @section('content')
 <h3 class="text-center">Editar livro</h3>
-@include('errors');
+@include('errors')
 <form action="{{route('books.update',$book->id)}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')
@@ -19,6 +19,10 @@
         <div class="form-group">
             <label for="price">Preço:</label>
             <input type="float" name="price"  class="form-control" value='{{$book->price}}' >
+        </div>
+        <div class="form-group">
+            <label for="contact">Contacto telefónico:</label>
+            <input type="number" name="contact"  class="form-control" value='{{$book->contact}}' >
         </div>
         <div class="form-group">
             <label for="language">Linguagem:</label>
