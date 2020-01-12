@@ -19,6 +19,7 @@ class CreateBooksTable extends Migration
             $table->string('authorOfBook');
             $table->float('price');
             $table->string('contact');
+            $table->string('contactMail');
             $table->string('creator');
             $table->integer('idCreator');
             $table->string('language');

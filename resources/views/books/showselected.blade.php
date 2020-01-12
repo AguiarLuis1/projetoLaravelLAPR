@@ -4,13 +4,12 @@
 
 @section('content')
 
-</br></br></br></br></br></br><h1 class="text-left"></br></br><strong><em>Os mais recentes disponiveis</em></strong></br></h1></br></br>
-    
-    <div class="card-deck">
-  
+<h1 class="text-left"><strong><em>Os mais recentes disponiveis</em></strong>
+
+<div class="card-deck">
         @forelse($books as $book)
-        
-  
+
+
         <div class="card text-dark bg-light border-dark" style="max-width: 450px;">
             <div class="row no-gutters">
                 <div class="col-md-4">
@@ -27,8 +26,8 @@
                 </div>
             </div>
         </div>
-        
-        
+
+
         @empty
         <div class="alert alert-danger" role="alert">
             <h5>Sem Livros para mostrar!</h5>
@@ -38,5 +37,3 @@
     </br></br>
     {{$books->links()}} <!--Cria navbar de acordo com o resultado da query -->
 @endsection
-
-

@@ -42,7 +42,7 @@
                         <li class="nav-item right px-1">
                             <a class="btn btn-outline-light" href="{{route('books.create')}}">Criar anúncio</a>
                         </li>
-  
+
                         <li class="nav-item right px-1">
                             <a class="btn btn-outline-light" href="{{route('books.mybooks')}}">Meus anúncios</a>
                         </li>
@@ -75,10 +75,10 @@
         <img class="h-50 d-incline-block w-100 " src="{{asset('/images/booook.jpg')}}" alt="First slide">
       </div>
       <div class="carousel-caption">
-        <h1 class="h1-responsive text-light bg-dark"><strong>Bem-vindos ao RelidosUFP</strong></h1>
-        <h2 class="h2-responsive text-light bg-dark">compre ou venda o seu livro aqui </h2>
+        <h1 class="h1-responsive text-light"><strong>Bem-vindos ao RelidosUFP</strong></h1>
+        <h2 class="h2-responsive text-light">compre ou venda o seu livro aqui </h2>
       </div>
-  
+
         @endif
 
         <main class="container mt-4">

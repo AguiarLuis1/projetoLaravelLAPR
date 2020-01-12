@@ -31,6 +31,7 @@ class BooksController extends Controller
         $book->authorOfBook = $request->authorOfBook;
         $book->price = $request->price;
         $book->contact = $request->contact;
+        $book->contactMail = Auth::user()->email;
         $book->creator = Auth::user()->name;
         $book->idCreator = Auth::id();
         $book->language = $request->language;
