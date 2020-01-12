@@ -98,7 +98,18 @@ class BooksController extends Controller
             'contact' => 'required',
             'language' => 'required',
             'isbn' => 'required',
-            'image' => 'file|image|max:5000', //5 mb tamanho max
+            'image' => 'required|file|image|max:5000', //5 mb tamanho max
+        ], [
+            'title.required' => 'É necessário inserir um título',
+            'authorOfBook.required' => 'É necessário inserir os autores do livro',
+            'price.required' => 'É necessário inserir um preço',
+            'contact.required' => 'É necessário inserir um contacto telefónico',
+            'language.required' => 'É necessário inserir a linguagem do livro',
+            'isbn.required' => 'É necessário inserir o ISBN do livro',
+            'image.required' => 'É necessário inserir uma imagem',
+            'image.max' => 'Insira uma imagem até 5kb',
+            'image.file' => 'O ficheiro tem de ser uma imagem',
+            'image.image' => 'O ficheiro tem de ser uma imagem',
         ]);
 
     }

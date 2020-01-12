@@ -30,12 +30,17 @@ class UserController extends Controller
             if ($user->email != $request->email) { //só atualiza de o campo estiver preenchido e passar a validação
                 request()->validate([
                     'email' => 'required|email|unique:users',
+                ], [
+
+                    'email.unique' => 'Este email já está a ser utilizado',
                 ]);
                 $user->email = $request->email;
             }
             if ($user->name != $request->name) {
                 request()->validate([
                     'name' => 'required|unique:users',
+                ], [
+                    'name.unique' => 'Este nome já está a ser utilizado',
                 ]);
                 $user->name = $request->name;
             }
