@@ -5,7 +5,7 @@
 @section('content')
 
 
-<a href="{{route('books.edit',$book->id)}}" class="btn btn-primary float-left">Editar</a>
+<a href="{{route('books.edit',$book->id)}}" class="btn btn-secondary float-left">Editar</a>
 
 <form method="POST" id="delete-form" action="{{route('books.delete',$book->id)}}">
     @csrf

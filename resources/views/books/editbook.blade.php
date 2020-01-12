@@ -3,7 +3,7 @@
 @section('title','Editar Livro')
 
 @section('content')
-<h3 class="text-center">Editar livro</h3>
+</br><h1><span class="badge badge-dark">Editar Livro</span></h1></br>
 @include('errors')
 <form action="{{route('books.update',$book->id)}}" method="post" enctype="multipart/form-data">
     @csrf
@@ -32,7 +32,7 @@
             <label for="ISBN">ISBN:</label>
             <input type="number" name="isbn"  class="form-control" value='{{$book->isbn}}'>
         </div>
-        <button type="submit" class="btn btn-primary">Update</button>
+        </br><button type="submit" class="btn btn-primary">Update</button>
         </form>
 
 

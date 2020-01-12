@@ -3,7 +3,8 @@
 @section('title','Inserir Livro')
 
 @section('content')
-<h3 class="text-center">Inserir novo livro</h3>
+
+</br><h1><span class="badge badge-dark">Inserir novo livro</span></h1></br>
 @include('errors')
 <form action="{{route('books.store')}}" method="post" enctype="multipart/form-data"> <!--enctype para imagens-->
     @csrf
@@ -35,7 +36,7 @@
             <label for="imagem">Fotografia do Livro:</label>
             <input type="file" name="image" class="py-2">
         </div>
-        <button type="submit" class="btn btn-primary">Inserir</button>
+        </br><button type="submit" class="btn btn-primary">Inserir</button>
         </form>
 
 @endsection

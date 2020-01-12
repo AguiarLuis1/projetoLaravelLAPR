@@ -3,7 +3,8 @@
 @section('title', 'Contact Us')
 
 @section('content')
-    <h1>Entre em contacto</h1>
+    </br></br>
+    <h1>Entre em contacto</h1></br>
 
 
         <form action="{{ route('contact.store') }}" method="POST">

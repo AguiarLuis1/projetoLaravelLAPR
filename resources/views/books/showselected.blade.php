@@ -4,28 +4,39 @@
 
 @section('content')
 
-    <h2 class="text-center">Livros para venda</h2>
-    <table border=1 class="table">
-    <thead class="thead-light">
-        <tr><th>Título</th><th>Autor(es)</th><th>Preço</th><th>Linguagem</th><th>Publicado</th></tr>
-    </thead>
+</br></br></br></br></br></br><h1 class="text-left"></br></br><strong><em>Os mais recentes disponiveis</em></strong></br></h1></br></br>
+    
+    <div class="card-deck">
+  
         @forelse($books as $book)
-        <tr>
-        <td>{{$book->title}}</td>
-        <td>{{$book->authorOfBook}}</td>
-        <td>{{$book->price}}&euro;</td>
-        <td>{{$book->language}}</td>
-        <td>{{$book->created_at->diffForHumans()}}</td>
-        <td><a href="book/{{$book->id}}">Ver mais!</a>
-        </tr>
-
+        
+  
+        <div class="card text-dark bg-light border-dark" style="max-width: 450px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="{{asset('storage/'.$book->image)}}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                <div class="card-body">
+                    <h4 class="card-title"><strong><ins>{{$book->title}}</ins></strong</h4>
+                    <p class="card-text">{{$book->authorOfBook}}</p>
+                    <p class="card-text"><strong>{{$book->price}}&euro;</strong></p>
+                    <p class="card-text"><small class="text-muted">{{$book->created_at->diffForHumans()}}</small></p>
+                    <a href="book/{{$book->id}}" class="btn btn-secondary">Ver Mais</a>
+                </div>
+                </div>
+            </div>
+        </div>
+        
+        
         @empty
         <div class="alert alert-danger" role="alert">
-            <h5><center>Sem Livros para mostrar!</center></h5>
+            <h5>Sem Livros para mostrar!</h5>
         </div>
         @endforelse
-
-    </table>
-
+    </div>
+    </br></br>
     {{$books->links()}} <!--Cria navbar de acordo com o resultado da query -->
 @endsection
+
+

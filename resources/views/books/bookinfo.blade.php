@@ -1,14 +1,23 @@
-<strong>Título:</strong> {{$book->title}}</br>
-<strong>Autor(es):</strong>  {{$book->authorOfBook}}</br>
-<strong>Preço:</strong>  {{$book->price}}&euro;</br>
-<strong>Contacto telefónico:</strong> {{$book->contact}}</br>
-<strong>Vendedor:</strong> {{$book->creator}}</br>
-<strong>Linguagem:</strong> {{$book->language}}</br>
-<strong>ISBN:</strong> {{$book->isbn}}</br></br>
+
+</br></br>
+
+
+<p align = left><font size= "5"><em><strong>&emsp;&emsp;&emsp;Imagem do Livro:</strong></em></font></p></br>
 @if($book->image)
     <div class="row">
         <div class="col-12">
-            <img src="{{asset('storage/'.$book->image)}}" alt="" class="rounded mx-auto d-block">
+            <img src="{{asset('storage/'.$book->image)}}" alt=""  align = "left" class="rounded mx-auto d-block ">
         </div>
     </div>
 @endif
+</p>
+<p align = right>
+<font size="5"><em><b>Informação do anúncio:</b></em></font></br></br>
+<strong><font size= "4">Título:</font></strong> {{$book->title}}</br>
+<strong><font size= "4">Autor(es):</font></strong>  {{$book->authorOfBook}}</br>
+<strong><font size= "4">Preço:</font></strong>  {{$book->price}}&euro;</br>
+<strong><font size= "4">Contacto telefónico:</font></strong> {{$book->contact}}</br>
+<strong><font size= "4">Vendedor:</font></strong> {{$book->creator}}</br>
+<strong><font size= "4">Linguagem:</font></strong> {{$book->language}}</br>
+<strong><font size= "4">ISBN:</font></strong> {{$book->isbn}}</p>
+

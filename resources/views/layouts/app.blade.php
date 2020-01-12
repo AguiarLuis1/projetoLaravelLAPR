@@ -11,9 +11,9 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand text-white" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -31,29 +31,29 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <li class="nav-item ">
+                                    <a class="nav-link text-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
-                        <li class="nav-item right">
-                            <a class="btn btn-outline-secundary" href="{{route('books.create')}}">Criar anúncio</a>
+                        <li class="nav-item right px-1">
+                            <a class="btn btn-outline-light" href="{{route('books.create')}}">Criar anúncio</a>
+                        </li>
+  
+                        <li class="nav-item right px-1">
+                            <a class="btn btn-outline-light" href="{{route('books.mybooks')}}">Meus anúncios</a>
                         </li>
 
-                        <li class="nav-item right">
-                            <a class="btn btn-outline-secundary" href="{{route('books.mybooks')}}">Meus anúncios</a>
+                        <li class="nav-item right px-1">
+                            <a class="btn btn-outline-light" href="{{route('contact.create')}}">Contacte-nos</a>
                         </li>
-
-                        <li class="nav-item right">
-                            <a class="btn btn-outline-info" href="{{route('contact.create')}}">Contacte-nos</a>
+                        <li class="nav-item right px-1">
+                            <a class="btn btn-outline-light" href="{{route('user.edit')}}">Editar perfil</a>
                         </li>
-                        <li class="nav-item right">
-                            <a class="btn btn-outline-secundary" href="{{route('user.edit')}}">Editar perfil</a>
-                        </li>
-                        <li class="nav-item right">
+                        <li class="nav-item right px-1">
                                     <a class="btn btn-outline-danger" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -70,6 +70,16 @@
                 </div>
             </div>
         </nav>
+        @if (Request:: is('/'))
+      <div class="view">
+        <img class="h-50 d-incline-block w-100 " src="{{asset('/images/booook.jpg')}}" alt="First slide">
+      </div>
+      <div class="carousel-caption">
+        <h1 class="h1-responsive text-light bg-dark"><strong>Bem-vindos ao RelidosUFP</strong></h1>
+        <h2 class="h2-responsive text-light bg-dark">compre ou venda o seu livro aqui </h2>
+      </div>
+  
+        @endif
 
         <main class="container mt-4">
             @if(session()->has('notif'))

@@ -3,14 +3,15 @@
 @section('title','Editar Utilizador')
 
 @section('content')
-<h3 class="text-center">Editar utilizador</h3>
+</br>
+<h1><span class="badge badge-dark">Editar Utilizador</span></h1></br>
 @include('errors')
 <form method="post" action="{{route('user.update')}}">
     @csrf
     @method('PUT')
     <div class="form-group">
-            <label for="name">Nome:</label>
-            <input type="text" name="name" class="form-control" value="{{ $user->name }}">
+        <label for="name">Nome:</label>
+        <input type="text" name="name" class="form-control" value="{{ $user->name }}">
     </div>
     <div class="form-group">
         <label for="email">Nome:</label>
@@ -18,15 +19,15 @@
     </div>
     <div class="form-group">
         <label for="password">Password nova:</label>
-        <input type="password" name="password" class="form-control" >
+        <input type="password" name="password" class="form-control">
     </div>
     <div class="form-group">
         <label for="password_confirmation">Confirmação password nova:</label>
-        <input type="password" name="password_confirmation" class="form-control" >
+        <input type="password" name="password_confirmation" class="form-control">
     </div>
     <div class="form-group">
         <label for="passwordCheck"><strong>Password atual:</strong></label>
-        <input type="password" name="passwordCheck" class="form-control" >
+        <input type="password" name="passwordCheck" class="form-control">
     </div>
 
     <button type="submit" class="btn btn-primary">Editar</button>
