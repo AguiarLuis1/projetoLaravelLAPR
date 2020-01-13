@@ -3,8 +3,9 @@
 @section('title', 'Contact Us')
 
 @section('content')
-@include('errors')
-    <h1>Entre em contacto</h1></br>
+    </br></br>
+    <h1><span class="badge badge-dark">Entre em contacto</span></h1></br>
+
 
         <form action="{{ route('contact.store') }}" method="POST">
             <div class="form-group">
@@ -14,7 +15,7 @@
 
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" name="email" value="{{ old('email') }}" class="form-control">
+                <input type="text" name="email" value="{{ old('email') }}" class="form-control">
             </div>
 
             <div class="form-group">

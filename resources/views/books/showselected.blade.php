@@ -3,8 +3,8 @@
 @section('title','Relidos UFP')
 
 @section('content')
-
-<h1 class="text-left"><strong><em>Os mais recentes disponiveis</em></strong>
+</br></br></br></br></b></br></br></br></br></b></br></br></br></b>
+</br></br></br></br></br></br><h1 class="text-left"><strong><em>Os mais recentes disponiveis</em></strong></br></br>
 
 <div class="card-deck">
         @forelse($books as $book)
@@ -13,7 +13,7 @@
         <div class="card text-dark bg-light border-dark" style="max-width: 450px;">
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <img src="{{asset('storage/'.$book->image)}}" class="card-img" alt="...">
+</br><img src="{{asset('storage/'.$book->image)}}" class="card-img" alt="...">
                 </div>
                 <div class="col-md-8">
                 <div class="card-body">
@@ -36,4 +36,6 @@
     </div>
     </br></br>
     {{$books->links()}} <!--Cria navbar de acordo com o resultado da query -->
+</br></br>
+
 @endsection
