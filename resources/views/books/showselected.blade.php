@@ -3,8 +3,7 @@
 @section('title','Relidos UFP')
 
 @section('content')
-</br></br></br></br></b></br></br></br></br></b></br></br></br></b>
-</br></br></br></br></br></br><h1 class="text-left"><strong><em>Os mais recentes disponiveis</em></strong></br></br>
+<h1 class="text-left"><strong><em>Os mais recentes disponiveis</em></strong>
 
 <div class="card-deck">
         @forelse($books as $book)

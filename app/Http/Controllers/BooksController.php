@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Books;
+use App\Cart;
+use App\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Omnipay\Omnipay;
+use Session;
 
 class BooksController extends Controller
 {
@@ -26,6 +30,15 @@ class BooksController extends Controller
 
     {
         $this->validateData();
+        request()->validate([
+            'image' => 'required|file|image|max:5000', //5 mb tamanho max
+        ], [
+            'image.required' => 'É necessário inserir uma imagem',
+            'image.max' => 'Insira uma imagem até 5kb',
+            'image.file' => 'O ficheiro tem de ser uma imagem',
+            'image.image' => 'O ficheiro tem de ser uma imagem',
+        ]);
+
         $book = new Books();
         $book->title = $request->title;
         $book->authorOfBook = $request->authorOfBook;
@@ -98,7 +111,7 @@ class BooksController extends Controller
             'contact' => 'required',
             'language' => 'required',
             'isbn' => 'required',
-            'image' => 'required|file|image|max:5000', //5 mb tamanho max
+
         ], [
             'title.required' => 'É necessário inserir um título',
             'authorOfBook.required' => 'É necessário inserir os autores do livro',
@@ -106,11 +119,82 @@ class BooksController extends Controller
             'contact.required' => 'É necessário inserir um contacto telefónico',
             'language.required' => 'É necessário inserir a linguagem do livro',
             'isbn.required' => 'É necessário inserir o ISBN do livro',
-            'image.required' => 'É necessário inserir uma imagem',
-            'image.max' => 'Insira uma imagem até 5kb',
-            'image.file' => 'O ficheiro tem de ser uma imagem',
-            'image.image' => 'O ficheiro tem de ser uma imagem',
         ]);
+    }
+    /*
+    Adiciona o livro a um carrinho armazenado na session
+     */
+    public function addToCart($id, Request $request)
+    {
+        $book = Books::findOrFail($id);
+        $cart = Session::has('cart') ? Session::get('cart') : new Cart(); //se a session já tiver um cart vai busca-lo
 
+        $cart->add($book, $book->id);
+
+        $request->session()->put('cart', $cart); //adiciona o novo cart á session
+
+        session()->flash('notif', 'Livro adicionado ao carrinho!');
+
+        return redirect('/');
+    }
+    public function showCart()
+    {
+        if (!Session::has('cart')) { //se a sessão não tiver um cart
+            return view('shop.showCart');
+
+        }
+        $cart = Session::get('cart');
+        return view('shop.showcart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]); //retorna a vista enviando como argumentos os produtos e o custo total
+    }
+
+    public function checkout()
+    {
+        if (!Session::has('cart')) { //se a sessão não tiver um cart
+            return view('shop.showCart');
+        }
+        $cart = Session::get('cart');
+        $total = $cart->totalPrice;
+        return view('shop.checkout', ['total' => $total]); //retorna a vista de checkout e envia como args o preço total a pagar
+
+    }
+
+    public function postCheckout(Request $request)
+    {
+        if ($request->input('stripeToken')) {
+
+            $gateway = Omnipay::create('Stripe');
+            $gateway->setApiKey(env('STRIPE_SECRET_KEY'));
+
+            $token = $request->input('stripeToken');
+
+            $response = $gateway->purchase([
+                'amount' => $request->input('amount'),
+                'currency' => env('STRIPE_CURRENCY'),
+                'token' => $token,
+            ])->send();
+
+            if ($response->isSuccessful()) {
+                // se o pagamendo fôr bem sucedido
+                $arr_payment_data = $response->getData();
+
+                $isPaymentExist = Payment::where('payment_id', $arr_payment_data['id'])->first();
+
+                if (!$isPaymentExist) {
+                    $payment = new Payment;
+                    $payment->payment_id = $arr_payment_data['id'];
+                    $payment->payer_email = $request->input('email');
+                    $payment->amount = $arr_payment_data['amount'] / 100;
+                    $payment->currency = env('STRIPE_CURRENCY');
+                    $payment->payment_status = $arr_payment_data['status'];
+                    $payment->save();
+                }
+
+                session()->flash('notif', 'Pagamento bem sucedido');
+                return redirect('/');
+            } else {
+                // mensagem de erro
+                return $response->getMessage();
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <title>@yield('title','Re-Lidos')</title>
 </head>
 
@@ -60,6 +60,12 @@
                             <a class="btn btn-outline-light" href="{{route('user.edit')}}">Editar perfil</a>
                         </li>
                         <li class="nav-item right px-1">
+                        <a class="btn btn-outline-light" href="{{route('books.showCart')}}">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                <span class="badle">{{Session::has('cart')? Session::get('cart')->totalQty:''}}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item right px-1">
                                     <a class="btn btn-outline-danger" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -77,9 +83,9 @@
             </div>
         </nav>
         @if (Request:: is('/'))
-    
+
         <img class="d-incline-block w-100 " height="620" src="{{asset('/images/booook.jpg')}}" alt="First slide">
-      
+
       <div class="carousel-caption">
 </b><h1 class="h1-responsive text-light bg-dark"><strong>Bem-vindos ao RelidosUFP</strong></h1>
         <h2 class="h2-responsive text-light bg-dark">compre ou venda o seu livro aqui </h2>

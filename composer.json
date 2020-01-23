@@ -10,9 +10,13 @@
     "require": {
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
+        "illuminate/support": "^6.12",
         "laracasts/flash": "^3.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
+        "league/omnipay": "^3.0",
+        "omnipay/stripe": "^3.1",
+        "stripe/stripe-php": "^7.19",
         "twbs/bootstrap": "^4.4"
     },
     "require-dev": {

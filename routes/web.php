@@ -43,4 +43,15 @@ Route::get('user/edit', 'UserController@edit')->name('user.edit')->middleware('a
 
 Route::put('user/edit', 'UserController@editSubmit')->name('user.update')->middleware('auth');
 
+//Add a book to the cart
+Route::get('cart/add/{id}', 'BooksController@addToCart')->name('book.addToCart')->middleware('auth');
+
+Route::get('cart', 'BooksController@showCart')->name('books.showCart')->middleware('auth');
+
+//mostra a vista do checkout
+Route::get('checkout', 'BooksController@checkout')->name('books.checkout')->middleware('auth');
+
+//executa a compra
+Route::post('checkout', 'BooksController@postCheckout')->name('books.postCheckout')->middleware('auth');
+
 Auth::routes();
